@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, EmbedBuilder, ActivityType, Collection,  } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, ActivityType, Collection } = require('discord.js');
 
 const wash = require('washyourmouthoutwithsoap');
 
@@ -43,14 +43,20 @@ bot.on('messageCreate', message => {
         if(wash.check("en", translatedText))
         {
             
-            message.delete(1000);
-            message.channel.send("ההודעה ששלחת נמחקה כיוון שמכילה קללה!");
+            
+            try{
+                message.delete(1000);
+                message.channel.send("ההודעה נמחקה כי היא מכילה קללה בשפה כלשהי!!!");
+            }   
+            catch{
+                console.log("nice cook")
+            }
             const timeoutmessage = new EmbedBuilder()
                 .setColor('#e30b0b')
                 .setTitle(`**אזהרה !!! אסור לקלל בצ'אט**`)
                 .setDescription("אדם שיקלל בצ'אט יורחק מהשרת לזמן מוקצב ולא יוכל לבצע אף פעולה בשרת!!!")
                 .setAuthor({ name: 'NetGuardian', iconURL: bot.user.displayAvatarURL(), url: 'https://discord.com/api/oauth2/authorize?client_id=1101546509218087052&permissions=8&scope=bot' })
-                .setImage('https://i.imgur.com/jx40uFy.jpeg')
+                .setImage('https://i.imgur.com/VTC742A.png')
                 .setTimestamp()
             message.author.send({ embeds: [timeoutmessage] })
         }
